@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In / Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Sign In / Register</h2>
+
+  <div id="userForm">
+    <form id="userSignInForm" style="display: none;">
+        <div class="form-group">
+          <label for="userName">Name:</label>
+          <input type="text" id="userName" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email:</label>
+          <input type="text" id="userEmail" placeholder="Enter your email">
+        </div>
+        <button type="button" onclick="userSignIn()">Sign In as User</button>
+        <a href="question.html" id="userSignInLink" style="display: none;">Go to Another Page</a>
+      </form>
+
+    <form id="expertSignInForm" style="display: none;">
+      <div class="form-group">
+        <label for="expertEmail">Email:</label>
+        <input type="text" id="expertEmail" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="expertPassword">Password:</label>
+        <input type="password" id="expertPassword" placeholder="Enter your password">
+      </div>
+      <button onclick="expertSignIn()">Sign In as Expert</button>
+    </form>
+  </div>
+
+  <div id="userLoggedIn" style="display: none;">
+    <h3>Welcome, <span id="userDisplayName"></span>!</h3>
+    <!-- User-specific content can go here -->
+  </div>
+
+  <div id="expertLoggedIn" style="display: none;">
+    <h3>Welcome, Expert!</h3>
+    <!-- Expert-specific content can go here -->
+  </div>
+
+  <hr>
+  <p>Choose your role:</p>
+  <button onclick="showUserForm()">User</button>
+  <button onclick="showExpertForm()">Expert</button>
+</div>
+
+<script>
+    function showUserForm() {
+      document.getElementById('userSignInForm').style.display = 'block';
+      document.getElementById('expertSignInForm').style.display = 'none';
+    }
+  
+    function showExpertForm() {
+      document.getElementById('userSignInForm').style.display = 'none';
+      document.getElementById('expertSignInForm').style.display = 'block';
+    }
+  
+    function userSignIn() {
+      const userName = document.getElementById('userName').value;
+      const userEmail = document.getElementById('userEmail').value;
+  
+      // Perform actions for user sign in, e.g., validation, authentication, etc.
+      document.getElementById('userDisplayName').textContent = userName;
+      document.getElementById('userForm').style.display = 'none';
+      document.getElementById('userLoggedIn').style.display = 'block';
+  
+      // Redirect to the Question Submission & Expert Selection page
+      window.location.href = 'question.html';
+    }
+  
+    function expertSignIn() {
+      const expertEmail = document.getElementById('expertEmail').value;
+      const expertPassword = document.getElementById('expertPassword').value;
+  
+      // Perform actions for expert sign in, e.g., validation, authentication, etc.
+      document.getElementById('userForm').style.display = 'none';
+      document.getElementById('expertLoggedIn').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

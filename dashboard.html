@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>User Dashboard</h2>
+  <label for="questionNumber">Enter Question Number:</label>
+  <input type="text" id="questionNumber" placeholder="Enter your question number">
+  <button onclick="checkQuestionStatus()">Check Status</button>
+
+  <div id="questionDetails" style="display: none;">
+    <h3>Question Details</h3>
+    <table id="questionTable">
+      <thead>
+        <tr>
+          <th>Question Number</th>
+          <th>Assigned Expert</th>
+          <th>Status</th>
+          <th>Time to Resolve</th>
+        </tr>
+      </thead>
+      <tbody id="questionDetailsBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  function checkQuestionStatus() {
+    const questionNumber = document.getElementById('questionNumber').value;
+
+    // Assume fetching question details from a backend API
+    // Replace this with your actual API call
+    const questionData = fetchQuestionDetailsFromAPI(questionNumber);
+
+    // Display fetched question details
+    displayQuestionDetails(questionData);
+  }
+
+  // Dummy function to simulate fetching question details from an API
+  function fetchQuestionDetailsFromAPI(questionNumber) {
+    // Assuming hardcoded data for demonstration
+    const questionDetails = [
+      {
+        questionNumber: "Q123",
+        assignedExpert: "John Doe",
+        status: "Resolved",
+        timeToResolve: "3 days"
+      },
+      {
+        questionNumber: "Q456",
+        assignedExpert: "Jane Smith",
+        status: "Pending",
+        timeToResolve: "Not resolved yet"
+      }
+      // Add more question details or fetch from the actual API
+    ];
+
+    // Find the specific question data based on the provided question number
+    const foundQuestion = questionDetails.find(question => question.questionNumber === questionNumber);
+
+    return foundQuestion || null; // Return null if question not found
+  }
+
+  function displayQuestionDetails(questionData) {
+    const questionDetailsDiv = document.getElementById('questionDetails');
+    const questionTableBody = document.getElementById('questionDetailsBody');
+
+    if (questionData) {
+      questionTableBody.innerHTML = `
+        <tr>
+          <td>${questionData.questionNumber}</td>
+          <td>${questionData.assignedExpert}</td>
+          <td>${questionData.status}</td>
+          <td>${questionData.timeToResolve}</td>
+        </tr>
+      `;
+      questionDetailsDiv.style.display = 'block';
+    } else {
+      questionTableBody.innerHTML = '<tr><td colspan="4">Question not found</td></tr>';
+      questionDetailsDiv.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>

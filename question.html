@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Question Submission & Expert Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Question Submission</h2>
+
+        <form id="questionForm" onsubmit="redirectToDashboard(); return false;">
+            <div class="form-group">
+                <label for="question">Question:</label>
+                <textarea id="question" placeholder="Enter your question" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="context">Additional Context:</label>
+                <textarea id="context" placeholder="Any additional details or context" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Category/Area of Expertise:</label>
+                <select id="category">
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <button onclick="submitQuestion()">Submit Question</button>
+            <a href="dashboard.html" id="submitQuestionLink" style="display: none;">Go to Another Page</a>
+        </form>
+
+        <hr>
+
+    </div>
+
+    <script>
+         function redirectToDashboard() {
+            // Perform any necessary actions for question submission
+
+            // Redirect to the dashboard.html page
+            window.location.href = 'dashboard.html';
+        }
+    function submitQuestion() {
+        const question = document.getElementById('question').value;
+        const context = document.getElementById('context').value;
+        const category = document.getElementById('category').value;
+
+        // Perform actions for question submission, e.g., send data to backend, etc.
+        console.log("Submitted Question:", question);
+        console.log("Additional Context:", context);
+        console.log("Category/Area of Expertise:", category);
+
+        // After submission, you can implement the logic to display expert selection based on the chosen category
+        displayExperts(category);
+
+        // Display the link to go to another page
+        const submitQuestionLink = document.getElementById('submitQuestionLink');
+        submitQuestionLink.style.display = 'block';
+
+        // Navigate to the new page after displaying the link
+        window.location.href = 'dashboard.html';
+    }
+
+    function displayExperts(category) {
+        // Your existing logic for displaying experts based on the selected category
+        // ...
+
+        // Example of showing default experts for different categories
+        // (your existing logic for displaying experts)
+    }
+    </script>
+</body>
+</html>
